@@ -3,6 +3,8 @@
  */
 package edu.uwlax.cs364.kantodex;
 
+import javafx.application.Application;
+
 public class KantoDex {
     public String getGreeting() {
         return "Hello World!";
@@ -10,5 +12,6 @@ public class KantoDex {
 
     public static void main(String[] args) {
         System.out.println(new KantoDex().getGreeting());
+        Application.launch(HelloFX.class, args);
     }
 }

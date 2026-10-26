@@ -1,6 +1,8 @@
 plugins {
+    id 'java'
     id 'application'
     id 'com.gradleup.shadow' version '9.6.1'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
 repositories {
@@ -22,12 +24,17 @@ application {
     mainClass = 'edu.uwlax.cs364.kantodex.KantoDex'
 }
 
+javafx {
+    version = '21.0.13'
+    modules = ['javafx.controls']
+}
+
 tasks.named('jar') {
     archiveClassifier = 'plain'
 }
 
 tasks.named('shadowJar') {
-    archiveClassifier.set('')
+    archiveClassifier = ''
     mergeServiceFiles()
 }
 
