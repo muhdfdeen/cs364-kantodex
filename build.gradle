@@ -35,6 +35,7 @@ tasks.named('jar') {
 
 tasks.named('shadowJar') {
     archiveClassifier = ''
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     mergeServiceFiles()
 }
 
