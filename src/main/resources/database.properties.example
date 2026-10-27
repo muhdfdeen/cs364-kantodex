@@ -1,0 +1,3 @@
+jdbcUrl=jdbc:mysql://localhost:3306/cs364-kantodex
+username=User
+password=Password
