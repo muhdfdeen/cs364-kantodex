@@ -3,15 +3,23 @@
  */
 package edu.uwlax.cs364.kantodex;
 
+import edu.uwlax.cs364.kantodex.database.DatabaseManager;
 import javafx.application.Application;
 
 public class KantoDex {
+    
     public String getGreeting() {
         return "Hello World!";
     }
 
     public static void main(String[] args) {
         System.out.println(new KantoDex().getGreeting());
-        Application.launch(HelloFX.class, args);
+
+        DatabaseManager databaseManager = new DatabaseManager();
+        databaseManager.connect();
+
+        // Application.launch(HelloFX.class, args);
+
+        databaseManager.disconnect();
     }
 }
