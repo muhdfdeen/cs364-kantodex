@@ -1,15 +1,19 @@
 package edu.uwlax.cs364.kantodex;
 
 import edu.uwlax.cs364.kantodex.database.DatabaseManager;
+import edu.uwlax.cs364.kantodex.database.QueryRunner;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 public class HelloFX extends Application {
 
@@ -26,7 +30,7 @@ public class HelloFX extends Application {
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
         // Our project should do
-        Tab pokedexTab = new Tab("Pokédex", new StackPane(new Label("Pokédex table will go here.")));
+        Tab pokedexTab = createPokedexTab();
         Tab teamTab = new Tab("Team Builder", new StackPane(new Label("Team CRUD controls will go here.")));
         Tab queriesTab = new Tab("Advanced Queries", new StackPane(new Label("Advanced SQL queries will go here.")));
         
@@ -43,6 +47,22 @@ public class HelloFX extends Application {
         stage.show();
     }
 
+    private Tab createPokedexTab() {
+        TableView<ObservableList<String>> pokedexTable = new TableView<>();
+        QueryRunner.runSqlFileIntoTable(databaseManager.getConnection(), "/pokedex.sql", pokedexTable);
+
+        BorderPane layout = new BorderPane();
+        layout.setCenter(pokedexTable);
+
+        return new Tab("Pokédex", layout);
+    }
+
+    @Override
+    public void stop() {
+        if (databaseManager != null) {
+            databaseManager.disconnect();
+        }
+    }
     public static void main(String[] args) {
         launch();
     }
