@@ -9,17 +9,11 @@ import javafx.application.Application;
 public class KantoDex {
     
     public String getGreeting() {
-        return "Hello World!";
+        return "Launching KantoDex ...";
     }
 
     public static void main(String[] args) {
         System.out.println(new KantoDex().getGreeting());
-
-        DatabaseManager databaseManager = new DatabaseManager();
-        databaseManager.connect();
-
-        // Application.launch(HelloFX.class, args);
-
-        databaseManager.disconnect();
+        Application.launch(HelloFX.class, args);
     }
 }

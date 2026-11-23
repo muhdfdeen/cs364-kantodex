@@ -42,6 +42,7 @@ public class DatabaseManager {
     public void connect() {
         if (url == null || username == null) {
             System.err.println("Can't connect to the database : configuration are not loaded properly ");
+            return;
         }
 
         try{
